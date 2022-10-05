@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "java.sql.*" %>
- 
 <%
+
 /* Paso 1) Obtener los datos del formulario */
 String ls_isbn = request.getParameter("isbn");
 String ls_titulo = request.getParameter("titulo");
@@ -67,12 +67,11 @@ ls_result += " <br/>" + e.toString();
 }
 }
 %>
-html>
 <html>
 <head><title>Updating a Database</title></head>
 <body>
  
-La siguiente instrucci�n fue ejecutada:
+La siguiente instrucción fue ejecutada:
 <br/><br/>
 <%=ls_query%>
 <br/><br/>

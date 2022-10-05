@@ -14,8 +14,7 @@
 </td>
   </tr>
  <tr>
- <td>Título<input type="text" name="titulo" value="" size="50"/></td>
- 
+ <td>Tï¿½tulo<input type="text" name="titulo" value="" size="50"/></td>
  </tr>
  <tr><td> Action <input type="radio" name="Action" value="Actualizar" /> Actualizar
  <input type="radio" name="Action" value="Eliminar" /> Eliminar
@@ -57,7 +56,7 @@ out.write("OK");
       ResultSet rs = st.executeQuery("select * from libros" );
 
       // Ponemos los resultados en un table de html
-      out.println("<table border=\"1\"><tr><td>Num.</td><td>ISBN</td><td>Titulo</td><td>Acción</td></tr>");
+      out.println("<table border=\"1\"><tr><td>Num.</td><td>ISBN</td><td>Titulo</td><td>Acciï¿½n</td></tr>");
       int i=1;
       while (rs.next())
       {
