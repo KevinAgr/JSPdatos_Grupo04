@@ -9,19 +9,23 @@
    <form action="matto.jsp" method="post" name="Actualizar">
       <table>
          <tr>
-            <td>ISBN<input type="text" name="isbn" value="" size="40"/></td>
+            <td>ISBN<input type="text" name="isbn" value="<% if (request.getParameter("isbn") != null) out.println(request.getParameter("isbn"));%>" size="40" required/></td>
          </tr>
          <tr>
-            <td>Título<input type="text" name="titulo" value="" size="50"/></td>
+            <td>Título<input type="text" name="titulo" value="<% if (request.getParameter("titulolibro") != null) out.println(request.getParameter("titulolibro"));%>" size="50" required/></td>
          </tr>
          <tr>
-            <td>Autor<input type="text" name="autor" value="" size="50"/></td>
+            <td>Autor<input type="text" name="autor" value="<% if (request.getParameter("autor") != null) out.println(request.getParameter("autor"));%>" size="50" required /></td>
          </tr>
          <tr>
             <td>
                Action 
-               <input type="radio" name="Action" value="Actualizar" /> Actualizar
-               <input type="radio" name="Action" value="Crear" checked /> Crear
+               <% 
+                  if (request.getParameter("actualizar") != null)
+                     out.println("<input type='radio' name='Action' value='Actualizar' checked/> Actualizar <input type='radio' name='Action' value='Crear'/> Crear");
+                  else 
+                     out.println("<input type='radio' name='Action' value='Actualizar'/> Actualizar<input type='radio' name='Action' value='Crear' checked/> Crear");              
+               %>               
             </td>
             <td>
                <input type="SUBMIT" value="ACEPTAR" /> 
@@ -31,10 +35,16 @@
    </form>
    <br>
    <form name="formbusca" action="libros.jsp" method="POST">
-      Titulo a buscar: 
-
-      <input type="text" name="titulo" placeholder="ingrese un título">
-      <input type="submit" name="buscar" value="BUSCAR">
+      <div>
+         Titulo a buscar: 
+         <input type="text" name="titulo" onkeyup="changeInput()" placeholder="ingrese un título">
+      </div>
+      <br>
+      <div>
+         Autor a buscar: 
+         <input type="text" name="escritor" onkeyup="changeInput()" placeholder="ingrese un autor">
+      </div>
+      <input type="submit" id="buscar" name="buscar" value="BUSCAR" disabled>
    </form>
 <%!
 public Connection getConnection(String path) throws SQLException {
@@ -63,6 +73,7 @@ if (!conexion.isClosed()) {
 
    String order = request.getParameter("order");
    String title = request.getParameter("titulo");
+   String escritor = request.getParameter("escritor");
 
    if (order != null) 
       if (order.equals("asc")) 
@@ -74,8 +85,13 @@ if (!conexion.isClosed()) {
       
    Statement st = conexion.createStatement();
    String query = "select * from libros ";
-   if (title != null) 
+   if (title != null) {
       query += "where titulo LIKE '%"+title+"%' ";
+      if (escritor != null)
+         query += "AND autor LIKE '%"+escritor+"%' ";
+   } else 
+      if (escritor != null)
+         query += "where autor LIKE '%"+escritor+"%' ";
    query += "order by titulo "+ order;
    ResultSet rs = st.executeQuery(query);
  
@@ -93,7 +109,7 @@ if (!conexion.isClosed()) {
       out.println("<td>"+ isbn +"</td>");
       out.println("<td>"+titulo+"</td>");
       out.println("<td>"+autor+"</td>");
-      out.println("<td><a href='libros.jsp?isbn="+isbn+"&titulolibro="+titulo+"'>Actualizar</a><br><a href='matto.jsp?Action=Eliminar&isbn="+isbn+"'>Eliminar</a></td>");
+      out.println("<td><a href='libros.jsp?isbn="+isbn+"&titulolibro="+titulo+"&autor="+autor+"&actualizar'>Actualizar</a><br><a href='matto.jsp?Action=Eliminar&isbn="+isbn+"'>Eliminar</a></td>");
       out.println("</tr>");
       i++;
    }
@@ -104,4 +120,5 @@ if (!conexion.isClosed()) {
 }
 
 %>
+<script src="js/script.js"></script>
 </body>
