@@ -1,0 +1,68 @@
+/*Estilo*/
+
+/*Estilo Biblioteca*/
+
+encabezado{
+    margin-left: 10px;
+}
+
+tituloP{
+    font: normal 20px arial; 
+    font-size: 35px;
+    font-style: italic;
+}
+
+biblioteca{
+    background-color: aliceblue;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+tabla{
+    margin: 30px 10px 10px 10px;
+    border: 2px solid black; 
+    border-collapse: collapse;
+    display: inline-table;
+    background-color:rgba(99, 4, 24, 0.952);
+}
+
+
+cabecera{
+    display: table-row;
+    border: 2px solid black; 
+    border-collapse: collapse;
+    font: normal 20px arial; 
+    text-align: left;
+    padding: 10px;
+    text-align: center;
+}
+
+libro{
+    display: table-row;
+    border: 2px solid black; 
+    border-collapse: collapse;
+    font: normal 20px arial; 
+    text-align: left;
+    padding: 10px;
+    text-align: center;
+}
+
+numero,isbn,titulo,autor,editorial,anio{
+    display: table-cell;  
+    font: normal 20px arial; 
+    text-align: center;
+    padding: 10px;
+    border: 2px solid black; 
+    background-color: rgba(235, 238, 240, 0.952);
+}
+
+numeros,isbns,titulos,autores,editoriales,anios{
+    display: table-cell;  
+    font: normal 20px arial; 
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(25, 37, 43, 0.952);
+    color: white;
+    border: 2px solid black; 
+}
